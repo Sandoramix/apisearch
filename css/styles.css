@@ -1,0 +1,17 @@
+*,*::before,*::after{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+:root{
+	--screen-height:100vh;
+	--screen-height:100dvh;
+
+}
+
+
+
+body{
+	height: var(--screen-height);
+}

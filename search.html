@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="images/apis.png" type="image/png">
+		<title>API SHOWCASE</title>
+
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body class="w-screen bg-neutral-900 text-white flex flex-col text-xs sm:text-base transition-all duration-100 overflow-hidden">
+
+		<header class="h-20 shrink-0 bg-neutral-800/50 px-4 py-2 flex items-center gap-6">
+			<a href="index.html" class="h-full shrink-0">
+				<img src="images/apis.png" alt="Logo" class="h-full aspect-square object-scale-down">
+			</a>
+
+			<span class="grow flex justify-center items-center h-full">
+				<form action="search.html" method="get" class=" h-full sm:max-w-[40rem] w-full transition-all duration-100 flex items-center justify-center bg-black/30 gap-2">
+
+
+
+					<!-- todo maybe il placeholder random tra un paio di scelte -->
+					<input type="text" name="query" id="query" class="min-w-[6rem] sm:min-w-[10rem] h-full w-full bg-transparent focus:outline-none placeholder:font-mono placeholder:text-center pl-5" placeholder="Evil Insult Generator">
+
+					<label for="category" class="sr-only">Categoria</label>
+					<select aria-placeholder="Category" name="category" id="category" disabled class="cursor-pointer overflow-hidden text-ellipsis disabled:cursor-not-allowed disabled:bg-black/10 max-w-[9rem] w-full capitalize bg-black text-center">
+						<option value="">all categories</option>
+					</select>
+
+					<button class="h-full aspect-square stroke-neutral-200 hover:stroke-white p-2">
+						<svg viewBox="0 0 24 24" fill="none" class="aspect-square h-full" xmlns="http://www.w3.org/2000/svg">
+							<path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z" stroke-width="2"></path>
+							<path d="M14 14L16 16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+							<path d="M15 11.5C15 13.433 13.433 15 11.5 15C9.567 15 8 13.433 8 11.5C8 9.567 9.567 8 11.5 8C13.433 8 15 9.567 15 11.5Z" stroke-width="2"></path>
+						</svg>
+					</button>
+
+
+				</form>
+			</span>
+
+			<a href="https://api.publicapis.org" target="_blank" rel="noopener noreferrer" class="text-yellow-500 underline decoration-white/0 transition-all duration-300 hover:decoration-yellow-600 underline-offset-8 text-center">API's<br>Homepage</a>
+		</header>
+
+		<main class="flex flex-col gap-4 grow shrink py-3 overflow-y-auto">
+			<div class="px-4 border-b border-white/10">
+				<h3 class="italic">Total count: 154</h3>
+			</div>
+			<ul id="list">
+			</ul>
+
+		</main>
+
+
+		<footer class="h-12 shrink-0">
+
+		</footer>
+
+
+
+
+
+		<template id="search-result-item">
+			<li class=" hover:bg-white/10 px-5 py-1">
+				<a href="#" target="_blank" rel="noopener noreferrer" data-key="URL" class="grid grid-cols-2">
+					<div>
+						<h2 data-key="API" class="text-base sm:text-xl hover:decoration-white decoration-white/0 underline underline-offset-4">API NAME</h2>
+						<h3 data-key="Link" class="text-neutral-300 text-xs">API LINK/</h3>
+						<h3 data-key="Description">DESCRIPTION</h3>
+					</div>
+					<div class="ml-auto border p-2 rounded sm:min-w-[15rem]">
+						<h4>Category: <span data-key="Category">CATEGORY</span></h4>
+						<h4>Auth: <span data-key="Auth">AUTH</span></h4>
+						<h4>HTTPS: <span data-key="HTTPS">BOOLEAN</span></h4>
+						<h4>CORS: <span data-key="Cors">CORS</span></h4>
+					</div>
+				</a>
+			</li>
+		</template>
+
+
+		<script src="js/domUtils.js"></script>
+		<script src="js/utils.js"></script>
+
+		<script src="js/search/search.js"></script>
+	</body>
+</html>

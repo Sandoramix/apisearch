@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="images/apis.png" type="image/png">
+		<title>API SHOWCASE</title>
+
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body class="w-screen bg-neutral-900 text-white flex flex-col text-base sm:text-xl transition-all duration-100 overflow-hidden">
+
+		<header class="h-20 shrink-0 bg-neutral-800/50 px-4 py-2 flex items-center">
+			<a href="index.html" class="h-full">
+				<img src="images/apis.png" alt="Logo" class="h-full aspect-square object-scale-down">
+			</a>
+			<span class="grow"></span>
+
+
+			<a href="https://api.publicapis.org" target="_blank" rel="noopener noreferrer" class="text-yellow-500 underline decoration-white/0 transition-all duration-300 hover:decoration-yellow-600 underline-offset-8 text-center">API's<br>Homepage</a>
+		</header>
+
+		<main class="flex flex-col gap-10 justify-center items-center grow shrink">
+
+			<form action="search.html" method="get" class=" h-16 sm:max-w-[40rem] sm:h-20 w-full transition-all duration-100 flex items-center bg-neutral-800 rounded-lg gap-1">
+
+
+
+				<!-- TODO maybe il placeholder random tra un paio di scelte -->
+				<input type="text" name="query" id="query" class="pl-5 grow py-3 h-full w-full bg-transparent focus:outline-none placeholder:font-mono placeholder:text-center " placeholder="Evil Insult Generator">
+
+				<label for="category" class="sr-only">Categoria</label>
+				<select aria-placeholder="Category" name="category" id="category" disabled class="overflow-hidden text-ellipsis grow disabled:cursor-not-allowed disabled:bg-zinc-900 max-w-[9rem] w-full h-full capitalize bg-black text-center">
+					<option value="">all categories</option>
+				</select>
+
+				<button class="grow py-3 h-full aspect-square stroke-neutral-200 hover:stroke-white">
+					<svg viewBox="0 0 24 24" fill="none" class="aspect-square h-full w-full" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z" stroke-width="2"></path>
+						<path d="M14 14L16 16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+						<path d="M15 11.5C15 13.433 13.433 15 11.5 15C9.567 15 8 13.433 8 11.5C8 9.567 9.567 8 11.5 8C13.433 8 15 9.567 15 11.5Z" stroke-width="2"></path>
+					</svg>
+				</button>
+
+
+			</form>
+
+			<a href="random.html" class="text-cyan-500 underline decoration-white/0 transition-all duration-300 hover:decoration-cyan-600 underline-offset-8">I'm feeling lucky</a>
+
+		</main>
+
+
+
+		<script src="js/domUtils.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/index/index.js"></script>
+	</body>
+</html>
