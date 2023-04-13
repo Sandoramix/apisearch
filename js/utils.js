@@ -2,13 +2,14 @@ const _API = {
 	GITHUB: `https://github.com/davemachado/public-api`,
 	BASE_URL: `https://api.publicapis.org`,
 };
-const _LS = {
-	CATEGORIES: `categories`
+const LS = {
+	OFFSET: `offset`
 };
 
 const API = {
 	ENTRIES: `${_API.BASE_URL}/entries`,
-	CATEGORIES: `${_API.BASE_URL}/categories`
+	CATEGORIES: `${_API.BASE_URL}/categories`,
+	RANDOM: `${_API.BASE_URL}/random`
 };
 
 
@@ -19,6 +20,12 @@ async function getEntries(query = "", category = "") {
 	const req = await fetch(API.ENTRIES + `?` + params);
 	const json = await req.json();
 	return json.entries ?? [];
+}
+async function getRandomEntry() {
+	const req = await fetch(API.RANDOM);
+	const json = await req.json();
+
+	return json.entries[0];
 }
 
 async function getAllCategories() {
