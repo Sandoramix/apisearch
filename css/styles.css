@@ -9,8 +9,21 @@
 	--screen-height:100dvh;
 
 }
-
-
+.gutter{
+	scrollbar-gutter: stable;
+}
+*::-webkit-scrollbar{
+	width:.75rem;
+	background: whitesmoke;
+	scroll-snap-type: mandatory;
+}
+*::-webkit-scrollbar-button{
+	display: none;
+}
+*::-webkit-scrollbar-thumb{
+	background: rgb(0, 0, 0);
+	border-radius: 1px;
+}
 
 body{
 	height: var(--screen-height);
