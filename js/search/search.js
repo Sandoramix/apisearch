@@ -46,7 +46,9 @@ getEntries(queryQuery, queryCategory)
 					element.href = api.Link;
 					return;
 				}
-				element.textContent = api[key];
+				let fixedText = api[key];
+				fixedText = fixedText == '' ? 'N/A' : fixedText;
+				element.textContent = fixedText;
 			});
 
 			return copy;

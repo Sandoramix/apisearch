@@ -64,18 +64,27 @@
 
 
 		<template id="search-result-item">
-			<li class=" hover:bg-white/10 px-5 py-1">
-				<a href="#" target="_blank" rel="noopener noreferrer" data-key="URL" class="grid grid-cols-2">
-					<div>
-						<h2 data-key="API" class="text-base sm:text-xl hover:decoration-white decoration-white/0 underline underline-offset-4">API NAME</h2>
-						<h3 data-key="Link" class="text-neutral-300 text-xs">API LINK/</h3>
-						<h3 data-key="Description">DESCRIPTION</h3>
+			<li class=" hover:bg-white/10 px-5 py-1 border-b border-white/10">
+				<a href="#" target="_blank" rel="noopener noreferrer" data-key="URL" class="grid grid-cols-3">
+					<div class="flex flex-col overflow-hidden text-ellipsis col-span-2">
+						<h2 data-key="API" class="text-base sm:text-xl hover:decoration-white decoration-white/0 underline underline-offset-4 font-medium">API NAME</h2>
+						<h3 data-key="Link" class="text-neutral-300 text-xs font-mono text-ellipsis overflow-hidden">API LINK/</h3>
+						<h3 data-key="Description" class=" font-serif my-3">DESCRIPTION</h3>
 					</div>
-					<div class="ml-auto border p-2 rounded sm:min-w-[15rem]">
-						<h4>Category: <span data-key="Category">CATEGORY</span></h4>
-						<h4>Auth: <span data-key="Auth">AUTH</span></h4>
-						<h4>HTTPS: <span data-key="HTTPS">BOOLEAN</span></h4>
-						<h4>CORS: <span data-key="Cors">CORS</span></h4>
+
+					<div class="ml-auto border p-2 rounded sm:min-w-[15rem] font-mono col-span-1 grid grid-cols-3">
+						<h4 class="col-start-1 col-span-1 border-b border-white/20">CATEGORY:</h4>
+						<h4 data-key="Category" class="col-span-2 text-end border-b border-white/20">CATEGORY</h4>
+
+						<h4 class="col-start-1 col-span-1 border-b border-white/20">AUTH:</h4>
+						<h4 data-key="Auth" class="col-span-2 text-end border-b border-white/20">AUTH</h4>
+
+						<h4 class="col-start-1 col-span-1 border-b border-white/20">HTTPS:</h4>
+						<h4 data-key="HTTPS" class="col-span-2 text-end border-b border-white/20">BOOLEAN</h4>
+
+
+						<h4 class="col-start-1 col-span-1 border-b border-white/20">CORS:</h4>
+						<h4 data-key="Cors" class="col-span-2 text-end border-b border-white/20">CORS</h4>
 					</div>
 				</a>
 			</li>
