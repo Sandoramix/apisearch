@@ -1,7 +1,8 @@
 const CATEGORY_SELECT = document.getElementById(`category`);
 
 getAllCategories()
-	.then(data => fillCategories(data, CATEGORY_SELECT))
-	.catch();
+	.catch(console.error)
+	.then(data => fillSelect(data, CATEGORY_SELECT))
+
 
 
