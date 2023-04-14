@@ -31,8 +31,8 @@ var pageOffset = 5;
 
 
 const loadQueryValues = () => {
-	CATEGORY_SELECT.value = queryCategory;
-	QUERY_INPUT.value = queryQuery;
+	CATEGORY_SELECT.value = queryCategory ?? "";
+	QUERY_INPUT.value = queryQuery ?? "";
 };
 const loadOffset = () => {
 	fillSelect(offsetOptions, OFFSET_SWITCHER_SELECT);
@@ -63,19 +63,33 @@ const updateOffset = () => {
 	goToPage(1);
 };
 
+/**
+ * @function showResults Show the given list of APIs on the page
+ * @param  {{
+ *  API: string;
+ *  Description: string;
+ *  Auth: string;
+ *  HTTPS: boolean;
+ *  Cors: ”yes” | ”no” | ”unknown”;
+ *  Link: string;
+ *  Category: string;
+ * }[]} list 
+ * @return {type} {description}
+ */
 const showResults = (list) => {
 	RESULT_LIST.innerHTML = ``;
-	const currentIndex = (currentPage - 1) * pageOffset;
-	const chunk = list.slice(currentIndex, currentIndex + pageOffset);
 
-	chunk.forEach(el => {
+	list.forEach(el => {
 		RESULT_LIST.appendChild(el.cloneNode(true));
 	});
 	const size = resultForgedElements.length;
 	TOTAL_COUNT_PARAGRAPH.textContent = `${currentPage > 1 ? `Page ${currentPage} of` : `Found`} ${size} result${size === 1 ? `` : `s`}`;
 };
 
-
+/**
+ * @function calculateTotalPages Recalculate totalPages count and show it in a paragraph
+ * @return {void}
+ */
 const calculateTotalPages = () => {
 	totalPages = Math.ceil(resultForgedElements.length / pageOffset);
 	if (totalPages === 0) {
@@ -88,6 +102,15 @@ const calculateTotalPages = () => {
 };
 
 
+/**
+ * @function canGoToPage Check if the page is in bounds and if the buttons (next/previous) should be shown
+ * @param  {number} page The page number
+ * @return {{
+ * 	previousButton:boolean,
+ *  nextButton:boolean,
+ *  result:boolean
+ * }} 
+ */
 function canGoToPage(page) {
 	return {
 		previousButton: (page > 1 && totalPages !== 0),
@@ -95,6 +118,11 @@ function canGoToPage(page) {
 		result: (page >= 1 && page <= totalPages && totalPages !== 0)
 	};
 }
+/**
+ * @function goToPage Change the page of results
+ * @param  {number} page The page number
+ * @return {void}
+ */
 const goToPage = (page = 1) => {
 
 	const check = canGoToPage(page);
@@ -107,7 +135,11 @@ const goToPage = (page = 1) => {
 	currentPage = page;
 
 	updateCurrentPageParagraph();
-	showResults(resultForgedElements);
+
+	const currentIndex = (currentPage - 1) * pageOffset;
+	const chunk = list.slice(currentIndex, currentIndex + pageOffset);
+
+	showResults(chunk);
 };
 
 // STARTING CALLING THE NEEDED FUNCTIONS
