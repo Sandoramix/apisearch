@@ -1,3 +1,4 @@
+// use strict;
 const CATEGORY_SELECT = document.getElementById(`category`);
 
 getAllCategories()

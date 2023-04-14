@@ -1,7 +1,6 @@
 // HEADER
 const CATEGORY_SELECT = document.getElementById(`category`);
 const QUERY_INPUT = document.getElementById(`query`);
-
 // MAIN
 const TOTAL_COUNT_PARAGRAPH = document.getElementById(`total-count`);
 const RESULT_LIST = document.getElementById(`list`);
@@ -25,56 +24,59 @@ var resultForgedElements = [];
 var currentPage = 1;
 var totalPages = undefined;
 
-const offsetOptions = [5, 10, 25, 50];
-var pageOffset = 5;
+const itemsCountPerPageOptions = [5, 10, 25, 50];
+var itemsCountPerPage = 5;
 
 
-
+/**
+ * @function loadQueryValues Update the query's <input> and category's <select> values in DOM
+ * @return {void}
+ */
 const loadQueryValues = () => {
 	CATEGORY_SELECT.value = queryCategory ?? "";
 	QUERY_INPUT.value = queryQuery ?? "";
 };
-const loadOffset = () => {
-	fillSelect(offsetOptions, OFFSET_SWITCHER_SELECT);
+
+/**
+ * @function loadItemsCountPerPage Load the number of items to show in a page from LocalStorage (or fallback)
+ * @return {void}
+ */
+const loadItemsCountPerPage = () => {
+	fillSelect(itemsCountPerPageOptions, OFFSET_SWITCHER_SELECT);
 	try {
 		const lsData = localStorage.getItem(LS.OFFSET);
 		const parsedNumber = Number.parseInt(lsData);
 		if (isNaN(parsedNumber)) throw 'Not A Number';
-		pageOffset = parsedNumber;
+		itemsCountPerPage = parsedNumber;
 	} catch (error) {
-		pageOffset = offsetOptions[0];
+		itemsCountPerPage = itemsCountPerPageOptions[0];
 	}
 };
 
-const updateCurrentPageParagraph = () => {
-	CURRENT_PAGE_PARAGRAPH.textContent = currentPage;
-};
-const updateOffset = () => {
+
+/**
+ * @function updateItemsCountPerPage Update itemsCountPerPage, save it to LocalStorage, recalculate totalPages and then go to page 1.
+ * @return {void}
+ */
+const updateItemsCountPerPage = () => {
 	let parsedOffset = undefined;
 	try {
 		parsedOffset = Number.parseInt(OFFSET_SWITCHER_SELECT.value);
 	} catch (error) {
-		parsedOffset = offsetOptions[0];
+		parsedOffset = itemsCountPerPageOptions[0];
 	}
-	pageOffset = parsedOffset;
-	localStorage.setItem(LS.OFFSET, pageOffset.toString());
+	itemsCountPerPage = parsedOffset;
+	localStorage.setItem(LS.OFFSET, itemsCountPerPage.toString());
 
 	calculateTotalPages();
 	goToPage(1);
 };
 
+
 /**
- * @function showResults Show the given list of APIs on the page
- * @param  {{
- *  API: string;
- *  Description: string;
- *  Auth: string;
- *  HTTPS: boolean;
- *  Cors: ”yes” | ”no” | ”unknown”;
- *  Link: string;
- *  Category: string;
- * }[]} list 
- * @return {type} {description}
+ * @function showResults
+ * @param  {DocumentFragment[]} list List Of API objects
+ * @return {void}
  */
 const showResults = (list) => {
 	RESULT_LIST.innerHTML = ``;
@@ -91,7 +93,7 @@ const showResults = (list) => {
  * @return {void}
  */
 const calculateTotalPages = () => {
-	totalPages = Math.ceil(resultForgedElements.length / pageOffset);
+	totalPages = Math.ceil(resultForgedElements.length / itemsCountPerPage);
 	if (totalPages === 0) {
 		PAGE_SWITCHER_DIV.classList.toggle(`!flex`, false);
 		return;
@@ -103,7 +105,7 @@ const calculateTotalPages = () => {
 
 
 /**
- * @function canGoToPage Check if the page is in bounds and if the buttons (next/previous) should be shown
+ * @function canGoToPage Check if the page is in bounds and if the buttons (`next`/`previous`) should be shown
  * @param  {number} page The page number
  * @return {{
  * 	previousButton:boolean,
@@ -134,16 +136,15 @@ const goToPage = (page = 1) => {
 	}
 	currentPage = page;
 
-	updateCurrentPageParagraph();
+	CURRENT_PAGE_PARAGRAPH.textContent = currentPage;
 
-	const currentIndex = (currentPage - 1) * pageOffset;
-	const chunk = list.slice(currentIndex, currentIndex + pageOffset);
+	const currentIndex = (currentPage - 1) * itemsCountPerPage;
+	const chunk = resultForgedElements.slice(currentIndex, currentIndex + itemsCountPerPage);
 
 	showResults(chunk);
 };
 
-// STARTING CALLING THE NEEDED FUNCTIONS
-
+// STARTING CALLING THE NEEDED FUNCTIONS & LISTENERS
 PREVIOUS_PAGE_BTN.addEventListener('click', () => {
 	goToPage(currentPage - 1);
 });
@@ -151,11 +152,11 @@ NEXT_PAGE_BTN.addEventListener('click', () => {
 	goToPage(currentPage + 1);
 });
 OFFSET_SWITCHER_SELECT.addEventListener(`input`, () => {
-	updateOffset();
+	updateItemsCountPerPage();
 });
 
 
-loadOffset();
+loadItemsCountPerPage();
 loadQueryValues();
 
 getAllCategories()
