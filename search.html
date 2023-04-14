@@ -90,15 +90,16 @@
 
 
 		<template id="search-result-item">
-			<li class="px-5 py-1 border-b hover:bg-white/10 border-white/10">
-				<a href="#" target="_blank" rel="noopener noreferrer" data-key="URL" class="grid grid-cols-3">
-					<div class="flex flex-col col-span-2 overflow-hidden text-ellipsis">
+			<li class="border-b hover:bg-black/20 border-white/10">
+				<a href="#" target="_blank" rel="noopener noreferrer" data-key="URL" class="grid grid-cols-3 px-5 py-1 ">
+
+					<div class="flex flex-col col-span-3 col-start-1 overflow-hidden md:col-span-2 text-ellipsis">
 						<h2 data-key="API" class="text-base font-medium underline sm:text-xl hover:decoration-white decoration-white/0 underline-offset-4">API NAME</h2>
 						<h3 data-key="Link" class="overflow-hidden font-mono text-xs text-neutral-300 text-ellipsis">API LINK/</h3>
 						<h3 data-key="Description" class="my-3 font-serif ">DESCRIPTION</h3>
 					</div>
 
-					<div class="ml-auto border p-2 rounded sm:min-w-[15rem] w-full font-mono col-span-1 grid grid-cols-3">
+					<div class="ml-auto border p-2 rounded sm:min-w-[15rem] border-cyan-700 w-full font-mono col-span-3 col-start-1 md:col-start-3 md:col-span-1 grid grid-cols-3">
 						<h4 class="col-span-1 col-start-1 border-b border-white/20">CATEGORY:</h4>
 						<h4 data-key="Category" class="col-span-2 border-b text-end border-white/20">CATEGORY</h4>
 
