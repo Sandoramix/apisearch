@@ -84,8 +84,6 @@ const showResults = (list) => {
 	list.forEach(el => {
 		RESULT_LIST.appendChild(el.cloneNode(true));
 	});
-	const size = resultForgedElements.length;
-	TOTAL_COUNT_PARAGRAPH.textContent = `${currentPage > 1 ? `Page ${currentPage} of` : `Found`} ${size} result${size === 1 ? `` : `s`}`;
 };
 
 /**
@@ -127,11 +125,15 @@ function canGoToPage(page) {
  */
 const goToPage = (page = 1) => {
 
+	const size = resultForgedElements.length;
+
 	const check = canGoToPage(page);
 
 	PREVIOUS_PAGE_BTN.disabled = !check.previousButton;
 	NEXT_PAGE_BTN.disabled = !check.nextButton;
 	if (!check.result) {
+
+		TOTAL_COUNT_PARAGRAPH.textContent = `Found 0 results`;
 		return;
 	}
 	currentPage = page;
@@ -140,6 +142,9 @@ const goToPage = (page = 1) => {
 
 	const currentIndex = (currentPage - 1) * itemsCountPerPage;
 	const chunk = resultForgedElements.slice(currentIndex, currentIndex + itemsCountPerPage);
+
+
+	TOTAL_COUNT_PARAGRAPH.textContent = `${currentPage > 1 ? `Page ${currentPage} of` : `Found`} ${size} result${size === 1 ? `` : `s`}`;
 
 	showResults(chunk);
 };
