@@ -52,6 +52,7 @@ const loadItemsCountPerPage = () => {
 	} catch (error) {
 		itemsCountPerPage = itemsCountPerPageOptions[0];
 	}
+	OFFSET_SWITCHER_SELECT.value = itemsCountPerPage;
 };
 
 
