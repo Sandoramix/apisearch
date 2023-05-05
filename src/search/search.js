@@ -1,3 +1,4 @@
+
 // HEADER
 const CATEGORY_SELECT = document.getElementById(`category`);
 const QUERY_INPUT = document.getElementById(`query`);
@@ -164,10 +165,11 @@ OFFSET_SWITCHER_SELECT.addEventListener(`input`, () => {
 loadItemsCountPerPage();
 loadQueryValues();
 
+loadQueryValues();//update <input> value
 getAllCategories()
 	.then(data => {
 		fillSelect(data, CATEGORY_SELECT);
-		loadQueryValues();
+		loadQueryValues();// update <select> value
 	})
 	.catch(console.error);
 
@@ -183,4 +185,6 @@ getEntries(queryQuery, queryCategory)
 		});
 		calculateTotalPages();
 		goToPage(1);
+
+		toggleLoadingSpinner();
 	});

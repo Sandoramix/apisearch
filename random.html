@@ -9,9 +9,14 @@
 		<title>API search - random</title>
 
 		<script src="https://cdn.tailwindcss.com"></script>
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="src/css/styles.css">
 	</head>
 	<body class="flex flex-col w-screen overflow-hidden text-base text-white transition-all duration-100 bg-neutral-900 sm:text-xl">
+
+		<div id="loading" class="fixed h-[var(--screen-height)] w-screen flex items-center justify-center z-50 backdrop-blur-md backdrop-brightness-75">
+			<img src="images/loading-spinner.svg" alt="loading-spinner">
+		</div>
+
 
 		<header class="flex items-center h-20 px-4 py-2 shrink-0 bg-neutral-800/50">
 			<a href="index.html" class="h-full">
@@ -68,8 +73,8 @@
 
 
 
-		<script src="js/domUtils.js"></script>
-		<script src="js/utils.js"></script>
-		<script src="js/random/random.js"></script>
+		<script src="src/domUtils.js"></script>
+		<script src="src/utils.js"></script>
+		<script src="src/random/random.js"></script>
 	</body>
 </html>

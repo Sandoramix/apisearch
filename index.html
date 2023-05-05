@@ -8,9 +8,16 @@
 		<title>API search</title>
 
 		<script src="https://cdn.tailwindcss.com"></script>
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="src/css/styles.css">
 	</head>
 	<body class="flex flex-col w-screen overflow-hidden text-base text-white transition-all duration-100 bg-neutral-900 sm:text-xl">
+
+		<div id="loading" class="fixed h-[var(--screen-height)] w-screen flex items-center justify-center z-50 backdrop-blur-md backdrop-brightness-75">
+			<img src="images/loading-spinner.svg" alt="loading-spinner">
+		</div>
+
+
+
 
 		<header class="flex items-center h-20 px-4 py-2 shrink-0 bg-neutral-800/50">
 			<a href="index.html" class="h-full">
@@ -21,6 +28,9 @@
 
 			<a href="https://api.publicapis.org" target="_blank" rel="noopener noreferrer" class="text-center text-yellow-500 underline transition-all duration-300 decoration-white/0 hover:decoration-yellow-600 underline-offset-8">Original<br>API's Homepage</a>
 		</header>
+
+
+
 
 		<main class="flex flex-col items-center justify-center gap-10 p-3 grow shrink">
 
@@ -37,13 +47,8 @@
 					</select>
 				</div>
 
-				<button class="h-full py-3 grow aspect-square stroke-neutral-200 hover:stroke-white">
-					<!-- SEARCH SVG -->
-					<svg viewBox="0 0 24 24" fill="none" class="w-full h-full aspect-square" xmlns="http://www.w3.org/2000/svg">
-						<path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z" stroke-width="2"></path>
-						<path d="M14 14L16 16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-						<path d="M15 11.5C15 13.433 13.433 15 11.5 15C9.567 15 8 13.433 8 11.5C8 9.567 9.567 8 11.5 8C13.433 8 15 9.567 15 11.5Z" stroke-width="2"></path>
-					</svg>
+				<button class="flex items-center justify-center h-full p-3 aspect-square">
+					<img src="images/search.svg" alt="search-icon" class="w-full h-full">
 				</button>
 
 			</form>
@@ -63,8 +68,8 @@
 
 
 
-		<script src="js/domUtils.js"></script>
-		<script src="js/utils.js"></script>
-		<script src="js/index/index.js"></script>
+		<script src="src/domUtils.js"></script>
+		<script src="src/utils.js"></script>
+		<script src="src/index/index.js"></script>
 	</body>
 </html>

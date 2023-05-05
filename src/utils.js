@@ -1,3 +1,10 @@
+// LOADING SPINNER IN EACH PAGE
+const LOADING_DIV = document.getElementById(`loading`);
+
+function toggleLoadingSpinner(visible = false) {
+	LOADING_DIV.classList.toggle(`!hidden`, !visible);
+}
+
 const _API = {
 	GITHUB: `https://github.com/davemachado/public-api`,
 	BASE_URL: `https://api.publicapis.org`,
